@@ -1,0 +1,6 @@
+<form ><script src="https://checkout.razorpay.com/v1/payment-button.js" data-payment_button_id="pl_OHQCSxFpa6pSUo" async> </script> </form>
+<form method="POST" action="{% url 'blog:savepayment' %}">
+    {% csrf_token %}
+    <input type="text" name="id" placeholder="enter" required>
+    <input type="submit" name="submitt">
+</form>

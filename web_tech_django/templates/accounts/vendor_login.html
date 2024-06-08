@@ -1,0 +1,84 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Login</title>
+
+    <link rel="stylesheet" href="{% static 'blog/css/index.css' %}">
+<style>
+        #flash-message {
+            display: none;
+            padding: 15px;
+            margin: 20px;
+            border: 1px solid #f5c6cb;
+            border-radius: 5px;
+            background-color: #f8d7da;
+            color: #ff0000;
+            font-family: 'Arial', sans-serif;
+            font-size: 16px;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            animation: fadein 1s;
+        }
+
+        @keyframes fadein {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        #flash-message p {
+            margin: 0;
+        }
+</style>
+</head>
+<body>
+
+    <div class="login">
+        <div class="login-form">
+            {% if user is not None and user.is_staff%}
+            <div id="flash-message" class="welcome">
+                <p>Welcome Vendor</p>
+            </div>
+            <form action="{% url 'blog:base_admin' %}" class="item__form" method="post">
+                {% csrf_token %}
+
+                {% if request.GET.next %}
+                    <h1>Please login first, before this operation!</h1>
+                    <input type="hidden" name="next" value="{{ request.GET.next }}">
+                {% endif %}
+
+                {{ form }}<br>
+
+                <input type="submit" value="Login" class="btn">
+
+                <br><br>
+
+                <div class="login-signup">
+                    <p>No an account?!</p>
+                    <a href="{% url 'blog:signup' %}" class="btn">Sign Up</a>
+                </div>
+                {% else %}
+                <div id="flash-message">
+                    <p>You Are Not Authorized To View This Page.</p><br><br>
+                    <p>Pease Sent Vendor Request To Access Vendor Page.</p>
+                </div>
+                <script>
+                    // Show the flash message immediately when the page loads
+                    var flashMessage = document.getElementById('flash-message');
+                    flashMessage.style.display = 'block';
+                </script>
+            </form>
+             {% endif %}
+        </div>
+    </div>
+    <script>
+        // Show the flash message immediately when the page loads
+        var flashMessage = document.getElementById('flash-message');
+        flashMessage.style.display = 'block';
+    </script>
+</body>
+</html>

@@ -1,0 +1,129 @@
+{% extends 'admin/base_admin.html' %}
+
+{% block title %} User Details {% endblock %}
+
+{% block content %}
+
+        <div class="container-fluid">
+            <div class="lead">
+                {{ user }}
+            </div>
+
+            <div class="user__orders">
+                {% if user_orders %}
+                    <table class="table table-hover table-striped">
+                        <thead class="thead-dark">
+                                <tr>
+                                    <th scope="col">#</th>
+                                      <th scope="col">Name</th>
+                                      <th scope="col">Started date</th>
+                                      <th scope="col">Duration</th>
+                                      <th scope="col">Price</th>
+                                      <th scope="col"></th>
+                                      <th scope="col"></th>
+                                </tr>
+                        </thead>
+                        <tbody>
+                            {% for order in user_orders %}
+                                    <tr>
+                                        <th scope="col">{{ order.tour.id }}</th>
+                                        <td>{{ order.tour.name }}</td>
+                                        <td>{{ order.tour.started }}</td>
+                                        <td>{{ order.tour.duration }} days</td>
+                                        <td>{{ order.tour.price }} Rs</td>
+                                        <td><a href="{% url 'blog:payment' %}" class="btn btn-primary">Payment</a></td>
+                                    </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                {% else %}
+                    <div class="alert alert-warning d-flex justify-content-center">
+                        User doesn't have any orders!
+                    </div>
+                {% endif %}
+            </div>
+
+            <div class="container-flu" style="background-color: #f8f9fa; padding: 20px; border-radius: 8px;">
+                {% if user_orders %}
+                    <h3 style="text-align: center; color: #343a40; font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; margin-bottom: 20px;">Checkout Details</h3>
+                    <ul class="list-group" style="list-style-type: none; padding: 0;">
+                        {% for checkout in checkoutorder %}
+                            <li class="list-group-item" style="background-color: #ffffff; border: 1px solid #dee2e6; margin-bottom: 10px; border-radius: 5px; padding: 15px;">
+                                <p style="margin: 0; color: #495057;"><strong>User ID:</strong> {{ checkout.user }}</p>
+                                <p style="margin: 0; color: #495057;"><strong>First Name:</strong> {{ checkout.first_name }}</p>
+                                <p style="margin: 0; color: #495057;"><strong>Second Name:</strong> {{ checkout.second_name }}</p>
+                                <p style="margin: 0; color: #495057;"><strong>Email Address:</strong> {{ checkout.email }}</p>
+                                <p style="margin: 0; color: #495057;"><strong>Address:</strong> {{ checkout.address }}</p>
+                                <p style="margin: 0; color: #495057;"><strong>State:</strong> {{ checkout.state }}</p>
+                                <p style="margin: 0; color: #495057;"><strong>District:</strong> {{ checkout.district }}</p>
+                                <p style="margin: 0; color: #495057;"><strong>Pin:</strong> {{ checkout.pin }}</p>
+                                <p style="margin: 0; color: #495057;"><strong>Phone Number:</strong> {{ checkout.phone }}</p>
+                                <p style="margin: 0; color: #495057;"><strong>Tour Date:</strong> {{ checkout.tour_date }}</p>
+                                <p style="margin: 0; color: #495057;"><strong>Tour Travellers:</strong> {{ checkout.tour_travellers }}</p>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <div class="alert alert-warning d-flex justify-content-center" style="background-color: #ffc107; color: #856404; border-color: #ffeeba; padding: 10px; border-radius: 5px;">
+                        No checkout details available!
+                    </div>
+                {% endif %}
+            </div>
+            
+        </div>
+<style>
+    /* Container Styles */
+.container-flu {
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Header Styles */
+h3 {
+    text-align: center;
+    color: #343a40;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    margin-bottom: 20px;
+    font-size: 1.75rem;
+    letter-spacing: 1px;
+}
+
+/* List Group Styles */
+.list-group {
+    list-style-type: none;
+    padding: 0;
+}
+
+/* List Group Item Styles */
+.list-group-item {
+    background-color: #ffffff;
+    border: 1px solid #dee2e6;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    padding: 15px;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.list-group-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Paragraph Styles */
+.list-group-item p {
+    margin: 0;
+    color: #495057;
+    font-family: 'Arial', sans-serif;
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+/* Strong Element Styles */
+.list-group-item p strong {
+    font-weight: 600;
+}
+
+</style>
+{% endblock %}

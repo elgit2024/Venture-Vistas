@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vendor Request</title>
+    <style>
+body {
+            font-family: Arial, sans-serif;
+            background-image: url('https://wallpapercave.com/wp/wp14031897.png');
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #333;
+
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+        }
+        form {
+            max-width: 600px;
+            margin: 30vh auto;
+            background: #ffffff69;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box; /* ensures padding and border are included in width */
+        }
+        tdat{
+            align-items: start;
+            font-weight: bolder;
+    
+        }
+        button {
+            background-color: #333;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #555;
+        }
+
+
+        #flash-message {
+            display: none;
+            padding: 15px;
+            margin: 20px;
+            border: 1px solid #f5c6cb;
+            border-radius: 5px;
+            background-color: #f8d7da;
+            color: #721c24;
+            font-family: 'Arial', sans-serif;
+            font-size: 16px;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            animation: fadein 1s;
+        }
+
+        @keyframes fadein {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        #flash-message p {
+            margin: 0;
+        }
+    </style>
+    <header>
+        Vendor Request
+    </header>
+    <body>
+        <table class="tdat">
+        {% if user is not None and not user.is_staff %}
+                <tr>
+                    <th>User : </th>
+                    <td>{{ user }}</td>
+                </tr>
+            </table>
+            <form action="{% url 'blog:vendor_req_save' %}" method="post">
+                {% csrf_token %}
+                <label for="vendoruser"> Enter Username </label><br>
+                <input type="text" name="vendoruser" required placeholder="User:"><br>
+                
+                <button type="submit" id="btn">Submit</button>
+            </form>
+        {% else %}
+        <div id="flash-message">
+            <p><b>You're Already A Vendor !</b></p>
+        </div>
+        {% endif %}
+        <script>
+            var flashMessage = document.getElementById('flash-message');
+            flashMessage.style.display = 'block';
+        </script
+    </body>
+</html>

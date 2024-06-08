@@ -1,0 +1,201 @@
+{% extends 'base.html' %}
+{#{% load crispy_forms_tags %}#}
+
+{% block content %}
+
+{% csrf_token %}
+<html lang="en">
+    {% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+<body>
+    <header>
+       <h1>CHECKOUT</h1>
+    </header>
+    <section>
+        <div>
+           <form method="POST" action="{% url 'blog:savecheckout' %}">
+               {% csrf_token %}
+                <table>
+                    <tr>
+                        <th>User :</th>
+                        <td>{{ user }}</td>
+                    </tr>
+                    <tr>
+                        <th>First Name:</th>
+                        <td><input type="text" name="first_name" placeholder="Enter your Name" class="aa"></td>
+                    </tr>
+                    <tr>
+                        <th>Last Name:</th>
+                        <td><input type="text" name="second_name" placeholder="Enter your Name" class="aa"></td>
+                    </tr>
+                    <tr>
+                        <th>Email:</th>
+                        <td><input type="email" name="email" placeholder="Enter your Email" class="aa"></td>
+                    </tr>
+                    <tr>
+                        <th>Address:</th>
+                        <td><textarea name="address" cols="31" rows="5" placeholder="Enter your address" maxlength="200"></textarea></td>
+                    </tr>
+                    <tr>
+                        <th>State:</th>
+                        <td><input type="text" name="state" placeholder="Enter your State" class="aa"></td>
+                    </tr>
+                    <tr>
+                        <th>District:</th>
+                        <td><input type="text" name="district" placeholder="Enter your District" class="aa"></td>
+                    </tr>
+                    <tr>
+                        <th>Pin:</th>
+                        <td><input type="tel" name="pin" placeholder="Enter your pincode" maxlength="6" class="aa"></td>
+                    </tr>
+                    <tr>
+                        <th>Phone:</th>
+                        <td><input type="tel" name="phone" placeholder="Enter your phone" maxlength="10" class="aa"></td>
+                    </tr>
+                    <tr>
+                        <th>Tour Date:</th>
+                        <td><input type="date" name="tour_date" class="aa"></td>
+                    </tr>
+                    <tr>
+                        <th>Tour Travellers:</th>
+                        <td><input type="number" name="tour_travellers" placeholder="Enter number of travellers" class="aa"></td>
+                    </tr>
+                </table>
+                <input type="submit" value="Continue" class="btn">
+            </form>
+        </div>
+    </section>
+    <style>
+          @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans&family=Lato&family=Montserrat:wght@300;400;500;600&display=swap');
+:root {
+    --primary-color: #3498db;
+    --secondary-color: #2ecc71;
+    --background-color: #f5f5f5;
+    --header-color: rgba(52, 152, 219, 0.8);
+    --text-color: #333;
+    --font-family-primary: 'Montserrat', sans-serif;
+    --font-family-secondary: 'Josefin Sans', sans-serif;
+    --transition-duration: 0.5s;
+    --background-image: url('https://www.example.com/your-background-image.jpg'); /* Replace with your image URL */
+}
+
+body {
+    background: var(--background-image) no-repeat center center fixed;
+    background-size: cover;
+    font-family: var(--font-family-primary);
+    font-size: 16px;
+    color: var(--text-color);
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+    transition: background-color var(--transition-duration), color var(--transition-duration);
+}
+
+header {
+    background-color: var(--header-color);
+    padding: 20px;
+    text-align: center;
+    color: #fff;
+    font-family: var(--font-family-secondary);
+    font-size: 2em;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    transition: background-color var(--transition-duration);
+}
+
+header:hover {
+    background-color: var(--primary-color);
+}
+
+section {
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 40px;
+    margin: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: background-color var(--transition-duration), box-shadow var(--transition-duration);
+}
+
+section:hover {
+    background-color: rgba(255, 255, 255, 1);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    font-family: var(--font-family-secondary);
+}
+
+th {
+    background-color: var(--primary-color);
+    color: #fff;
+}
+
+.aa {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    transition: border-color var(--transition-duration), box-shadow var(--transition-duration);
+}
+
+.aa:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 8px rgba(52, 152, 219, 0.5);
+}
+
+textarea.aa {
+    resize: vertical;
+}
+
+.btn {
+    background-color: var(--primary-color);
+    color: #fff;
+    border: none;
+    padding: 12px 20px;
+    font-family: var(--font-family-primary);
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color var(--transition-duration);
+    width: 100%;
+    margin-top: 20px;
+}
+
+.btn:hover {
+    background-color: var(--secondary-color);
+}
+
+@media (max-width: 768px) {
+    header {
+        font-size: 1.5em;
+    }
+
+    section {
+        padding: 20px;
+        margin: 10px;
+    }
+
+    th, td {
+        font-size: 14px;
+    }
+}
+
+    </style>
+ </body>
+ </html>
+
+{% endblock content %}

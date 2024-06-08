@@ -1,0 +1,123 @@
+/* login */
+:root {
+    --dark-bg: #121212;
+    --body-bg: #1e1e1e;
+    --hairline-color: #333;
+    --header-link-color: #0ff;
+    --input-bg: #2a2a2a;
+    --input-border: #555;
+    --btn-bg: #0ff;
+    --btn-hover-bg: #0cc;
+    --text-color: #fff;
+    --placeholder-color: #777;
+    --border-radius: 5px;
+    --font-family: 'Roboto Mono', monospace;
+}
+
+body {
+    font-family: var(--font-family);
+    background-color: var(--dark-bg);
+    color: var(--text-color);
+    margin: 0;
+    padding: 0;
+}
+
+.login {
+    background: var(--dark-bg);
+    height: auto;
+    color: var(--text-color);
+}
+
+.login #header {
+    height: auto;
+    padding: 15px 16px;
+    justify-content: center;
+    text-align: center;
+}
+
+.login #header h1 {
+    font-size: 24px;
+    color: var(--header-link-color);
+}
+
+.login #header h1 a {
+    color: var(--header-link-color);
+    text-decoration: none;
+}
+
+.login #header h1 a:hover {
+    color: var(--btn-hover-bg);
+}
+
+.login #content {
+    padding: 20px 20px 0;
+}
+
+.login #container {
+    background: var(--body-bg);
+    border: 1px solid var(--hairline-color);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    width: 28em;
+    min-width: 300px;
+    margin: 100px auto;
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+}
+
+.login .form-row {
+    padding: 10px 0;
+}
+
+.login .form-row label {
+    display: block;
+    line-height: 2em;
+    color: var(--header-link-color);
+}
+
+.login .form-row #id_username, .login .form-row #id_password {
+    padding: 10px;
+    width: 100%;
+    box-sizing: border-box;
+    background: var(--input-bg);
+    border: 1px solid var(--input-border);
+    border-radius: var(--border-radius);
+    color: var(--text-color);
+}
+
+.login .form-row #id_username::placeholder, .login .form-row #id_password::placeholder {
+    color: var(--placeholder-color);
+}
+
+.login .submit-row {
+    padding: 1em 0 0 0;
+    margin: 0;
+    text-align: center;
+}
+
+.login .submit-row input[type="submit"] {
+    padding: 10px 20px;
+    background: var(--btn-bg);
+    border: none;
+    border-radius: var(--border-radius);
+    color: var(--dark-bg);
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.login .submit-row input[type="submit"]:hover {
+    background: var(--btn-hover-bg);
+}
+
+.login .password-reset-link {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.login .password-reset-link a {
+    color: var(--header-link-color);
+    text-decoration: none;
+}
+
+.login .password-reset-link a:hover {
+    color: var(--btn-hover-bg);
+}
