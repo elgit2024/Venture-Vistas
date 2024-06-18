@@ -83,11 +83,8 @@ WSGI_APPLICATION = 'web_tech_django.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'eltourism',
-        'USER': 'eltravel',
-        'PASSWORD': '123',
-        'HOST': 'localhost',
+    'ENGINE': 'django.db.backends.sqlite3',
+    'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 
