@@ -96,7 +96,7 @@ body {
             <form action="{% url 'blog:vendor_req_save' %}" method="post">
                 {% csrf_token %}
                 <label for="vendoruser"> Enter Username </label><br>
-                <input type="text" name="vendoruser" required placeholder="User:"><br>
+                <input type="text" name="vendoruser" value="{{ user }}" required readonly><br>
                 
                 <button type="submit" id="btn">Submit</button>
             </form>

@@ -1,6 +1,80 @@
-<form ><script src="https://checkout.razorpay.com/v1/payment-button.js" data-payment_button_id="pl_OHQCSxFpa6pSUo" async> </script> </form>
-<form method="POST" action="{% url 'blog:savepayment' %}">
-    {% csrf_token %}
-    <input type="text" name="id" placeholder="enter" required>
-    <input type="submit" name="submitt">
-</form>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #5a5a5a;
+            margin: 0;
+            padding: 100px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        form {
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        table td {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        input[type='tel']{
+            border-radius: 10px;
+            justify-content: center;
+            text-align: center;
+        }
+
+        h3 {
+            color: #333;
+            margin-top: 20px;
+        }
+
+        #payment-form {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <form method="POST" action="{% url 'blog:savepayment' %}">
+            {% csrf_token %}
+            <table>
+                USER ID : <td>{{ user }}</td>
+            </table>
+            Phone:
+            <input type="tel" name="phone" maxlength="10" required placeholder="XXX-XXX-XXXX">
+            <input type="submit" name="submitt" value="DONE">
+        </form>
+        <h3>*Take Screenshort</h3>
+        <form action="{% url 'blog:index' %}" id="payment-form">
+            <script src="https://checkout.razorpay.com/v1/payment-button.js" data-payment_button_id="pl_OHQCSxFpa6pSUo" async> </script>
+        </form>
+    </div>
+</body>
+</html>
+
