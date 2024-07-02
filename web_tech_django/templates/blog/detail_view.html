@@ -3,7 +3,7 @@
 {% block title %} Tour Detail {% endblock %}
 
 {% block content %}
-
+{% if not user.is_staff %}
     <div class="showcase">
         <div class="container">
             <div class="showcase__text">
@@ -43,5 +43,6 @@
 
 
     </div>
+{% endif %}
 
 {% endblock %}

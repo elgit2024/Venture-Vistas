@@ -158,6 +158,9 @@ def home_page(request):
     return render(request, 'blog/tours.html', {'tours': tours})
 
 def detail_view(request, id):
+    if request.user.is_staff or request.user.is_superuser:
+     return redirect('blog:tours')
+    
     tour = Tour.objects.get(id = id)
     return render(request, "blog/detail_view.html", {'tour':tour})
 
